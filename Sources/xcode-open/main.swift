@@ -3,8 +3,7 @@ import Files
 import SwiftShell
 import Antlr4
 
-do {
-    
+
     for subfolder in try Folder(path: "/Users/johndpope/Documents/cryptoWorkspace/abci").subfolders {
         
         for file in try subfolder.files {
@@ -41,11 +40,5 @@ do {
     
     
     
-}catch let error as ANTLRException{
-    print("error occur: CannotInvokeStartRule:",error)
-}catch ANTLRException.recognition(let e )   {
-    print("error occur\(e)")
-}catch {
-    print("error occur")
-}
+
 

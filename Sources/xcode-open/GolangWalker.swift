@@ -8,9 +8,39 @@ public class GolangWalker: GolangBaseListener{
 ////        Data.debugContext(ctx: ctx, loggingContext: "enterArguments")
 //
 //    }
+    
+    public override func enterParameters(_ ctx: GolangParser.ParametersContext) {
+            Data.debugContext(ctx: ctx, loggingContext: "enter params")
+    }
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    public override func exitParameters(_ ctx: GolangParser.ParametersContext) {
+            Data.debugContext(ctx: ctx, loggingContext: "exit params")
+    }
+    
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    public override func enterParameterList(_ ctx: GolangParser.ParameterListContext) {
+          Data.debugContext(ctx: ctx, loggingContext: "enter enterParameterList")
+    }
+    
 
     public override func enterFunctionDecl(_ ctx: GolangParser.FunctionDeclContext) {
-      Data.debugContext(ctx: ctx, loggingContext: "enterFunctionDecl")
+        do{
+            if let str =  try Data.tokenStream()?.getText(ctx){
+                print("static \(str)\n\n\n")
+            }
+        }
+        catch{ }
+        
+
+        // func NewGRPCClient(addr string, mustConnect bool) *grpcClient
     }
     
     
@@ -18,9 +48,9 @@ public class GolangWalker: GolangBaseListener{
         Data.debugContext(ctx: ctx, loggingContext: "enterMethodDecl")
     }
     
-     public override func enterTopLevelDecl(_ ctx: GolangParser.TopLevelDeclContext) {
-         Data.debugContext(ctx: ctx, loggingContext: "enterTopLevelDecl")
-    }
+//     public override func enterTopLevelDecl(_ ctx: GolangParser.TopLevelDeclContext) {
+//         Data.debugContext(ctx: ctx, loggingContext: "enterTopLevelDecl")
+//    }
 
 //    public override func exitTopLevelDecl(_ ctx: GolangParser.TopLevelDeclContext) {
 //
