@@ -13,7 +13,9 @@ import Antlr4
                 do{
                     print("BEGIN -------------  \(textFileName)")
                     let lexer = try  GolangLexer(ANTLRFileStream(file.path))
-                    //        print("lexer:",lexer)
+                    
+
+                    
                     let tokens =  CommonTokenStream(lexer)
                     let parser = try GolangParser(tokens)
                     
@@ -29,6 +31,13 @@ import Antlr4
                     
                     try walker.walk(golangwalker,tree)
                     
+                    let swiftPath = file.path.replacingOccurrences(of: "go", with: "swift")
+                    let test = "test"
+                    print("swiftPath -------------  \(swiftPath)")
+                    if let data =  test.data(using: .ascii){
+                        Files.createFile(atPath: swiftPath, contents: data, attributes: nil)
+                    }
+                  
                 }
                 catch{
                     print("couldn't read file  \(textFileName)")

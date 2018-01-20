@@ -24,6 +24,9 @@ class Data{
             if let str =  try Data.tokenStream()?.getText(ctx){
                 print("\(loggingContext):")
                 print("\(str)\n\n\n")
+                if (str == "(req *types.Request) *ReqRes"){
+                    print("FATAL")
+                }
             }
         }
         catch{ }
